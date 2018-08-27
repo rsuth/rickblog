@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>create a post</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div id="messages">
+            <script>
+                var messages = {{ messages | safe }};
+                var m = document.getElementById("messages");
+                for (var i=0; i < messages.length; i++){
+                    message = document.createTextNode(messages[i]);
+                    m.appendChild(message);
+                }
+            </script>
+        </div>
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('create') }}" class="post-form" method="post">
+        <label for="title">title</label>
+        <input id="title-input" name="title" type="text"><br>
+        <textarea id="body-input" name="body" rows="20" cols="60"></textarea><br>
+        <button type="submit">post</button>
+    </form>
+{% endblock %}

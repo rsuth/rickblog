@@ -5,11 +5,25 @@
       {% else %}
       <title>rickblog</title>
       {% endif %}
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <div>rickblog <a href="{{ url_for('index') }}">home</a></div>
-        <hr>
-        {% block content %}{% endblock %}
+        <div id="container">
+            <div id="topbar">rickblog 
+                <a href="{{ url_for('index') }}">home</a>
+                <div style="float:right">
+                    {% if session['logged_in'] %}
+                        you are logged in 
+                        <a href="{{ url_for('create') }}">create post</a>
+                        <a href="{{ url_for('logout') }}"> log out</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">log in</a>
+                    {% endif %}
+                </div>
+                <hr>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
     </body>
 </html>
 

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    {% for tag in post.tags %}
+        <h3>{{ tag.name }}</h3>
+    {% endfor %}
+    <div class="post">
+        <p>{{ post.body }}</p>
+        {% if session['logged_in'] %}
+            <a href="/edit/{{ post.slug }}/">edit</a>
+        {% endif %}
+        <div class="timestamp" >last modified: {{ post.timestamp }}</div>
+    </div>
+{% endblock %}

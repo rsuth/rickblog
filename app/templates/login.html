@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>log in</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div id="messages">
+            <script>
+                var messages = {{ messages | safe }};
+                var m = document.getElementById("messages");
+                for (var i=0; i < messages.length; i++){
+                    message = document.createTextNode(messages[i]);
+                    m.appendChild(message);
+                }
+            </script>
+        </div>
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('login', next=next_url) }}" class="login-form" method="post">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+        <button type="submit">log in</button>
+    </form>
+{% endblock %}
